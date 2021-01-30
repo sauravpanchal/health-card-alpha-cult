@@ -1,0 +1,103 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<h1>This is admin'page</h1>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>User :</h5>
+			<br>
+			<a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'create_user' %}">
+				Create User
+			</a>
+			<!-- <a class="btn btn-outline-dark btn-sm btn-block" href="#">
+				Update User
+			</a> -->			
+		</div>
+		
+	</div>
+
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Admin Information</h5>
+			<br>
+			<p>Username : {{request.user}}</p>
+			<!-- <p>Email : {{request.mail}}</p> -->
+		</div>
+	</div>	
+</div>
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{% csrf_token %}
+				{{myfilter.form}}
+				<button class="btn btn-primary" type="submit">
+					Search
+				</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+<style>
+	th,td
+	{
+	    border:1px black solid;
+	}
+</style>
+
+<div class="row">
+	<div class="col md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>User Name</th>
+					<th>Name</th>			
+					<th>Gender</th>	
+					<th>Date Of Birth</th>	
+					<th>Age</th>
+					<th>Address</th>
+					<th>E-mail</th>
+					<th>Contact</th>	
+					<th>Registration Date</th>
+					<!-- <th>Due Card Date</th> -->
+					<th>Medical History</th>
+					<th>Side Effects</th>
+					<th>Prescription</th>
+					<th>Remarks</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>									
+					{% for i in user %}
+						<tr>
+							<td>{{i.username}}</td>
+							<td>{{i.name}}</td>
+							<td>{{i.gender}}</td>			
+							<td>{{i.dob}}</td>
+							<td>{{i.age}}</td>
+							<td>{{i.address}}</td>
+							<td>{{i.email}}</td>
+							<td>{{i.contact}}</td>
+							<td>{{i.datecreated}}</td>
+							<td>{{i.medicalhistory}}</td>
+							<td>{{i.sideeffects}}</td>
+							<td>{{i.priscription}}</td>
+							<td>{{i.remarks}}</td>
+							<td><a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_user' pk_test=i.username %}">Update</a></td>
+							<td><a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_user' pk_test=i.username %}">Delete</a></td>					
+						</tr>
+					{% endfor %}								
+			</table>			
+		</div>
+	</div>
+</div>
+{% endblock %}

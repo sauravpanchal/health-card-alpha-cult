@@ -1,0 +1,23 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<p>Are you sure you want to delete {{user_delete_id.username}} ?</p>
+
+			<form action="{% url 'delete_user' user_delete_id.username %}" method="POST">
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'user_admin'  %}">Cancel</a>
+				<input class="btn btn-danger" type="submit" name="confirmed" href="{% url 'delete_user' pk_test=user_delete_id.username %}">
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+{% endblock %}

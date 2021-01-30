@@ -1,0 +1,30 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<h1>This My Dashboard</h1>
+
+<div class="col-md">
+	<div class="card card-body">
+		<br>
+		<a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'login' %}">
+			Admin Login
+		</a>
+	</div>
+	<div class="card card-body">
+		<br>
+		<a class="btn btn-outline-info btn-sm btn-block" href="{% url 'register' %}">
+			Admin Signup
+		</a>
+	</div>
+</div>
+<br>
+<!-- <div class="col-md">
+	<div class="card card-body">
+			<button class="btn btn-outline-danger btn-sm btn-block" type="submit">
+				View Your Data
+			</button>
+		</form>
+	</div>
+</div> -->
+{% endblock %}
